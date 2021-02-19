@@ -5,6 +5,10 @@
  */
 package edu.eci.arsw.blueprints.test.persistence.impl;
 
+
+import edu.eci.arsw.blueprints.filtro.filtro;
+import edu.eci.arsw.blueprints.filtro.impl.filtroRedundancia;
+import edu.eci.arsw.blueprints.filtro.impl.filtroSubmuestreo;
 import edu.eci.arsw.blueprints.model.Blueprint;
 import edu.eci.arsw.blueprints.model.Point;
 import edu.eci.arsw.blueprints.persistence.BlueprintNotFoundException;
@@ -99,6 +103,36 @@ public class InMemoryPersistenceTest {
         assertEquals("Loading a previously stored blueprint returned a different blueprint.",ibpp.getBlueprintsByAuthor("john"), 
         		allBlueprints);
      
+        
+    }
+    @Test
+    public void filterRedundancy(){
+        filtro ibpp=new filtroRedundancia();
+
+        Point[] pts0=new Point[]{new Point(40, 40),new Point(15, 15),new Point(15, 15),new Point(15, 15)};
+        Blueprint bp0=new Blueprint("mack", "mypaint",pts0);
+        Blueprint prueba = ibpp.filterBlueprint(bp0);
+       
+        assertEquals(prueba.getPoints().size(),1);
+        
+       
+        
+    }
+
+    @Test
+    public void filterSubsampling(){
+        filtro ibpp=new filtroSubmuestreo();
+
+        Point[] pts0=new Point[]{new Point(40, 40),new Point(15, 15),new Point(15, 15),new Point(15, 15)};
+        Blueprint bp0=new Blueprint("mack", "mypaint",pts0);
+        Blueprint prueba = ibpp.filterBlueprint(bp0);
+       
+        assertEquals(prueba.getPoints().size(),2);
+        
+        Point[] pts1=new Point[]{new Point(40, 40),new Point(15, 15),new Point(16, 16)};
+        Blueprint bp1=new Blueprint("mack", "mypaint",pts1);
+        Blueprint prueba1 = ibpp.filterBlueprint(bp1);
+        assertEquals(prueba1.getPoints().size(),2);
         
     }
 

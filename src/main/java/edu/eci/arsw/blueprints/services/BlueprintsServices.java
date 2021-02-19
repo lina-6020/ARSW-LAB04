@@ -5,6 +5,7 @@
  */
 package edu.eci.arsw.blueprints.services;
 
+import edu.eci.arsw.blueprints.filtro.filtro;
 import edu.eci.arsw.blueprints.model.Blueprint;
 import edu.eci.arsw.blueprints.model.Point;
 import edu.eci.arsw.blueprints.persistence.BlueprintNotFoundException;
@@ -25,6 +26,13 @@ public class BlueprintsServices {
    
     @Autowired
     BlueprintsPersistence bpp=null;
+    
+    @Autowired
+    filtro fil=null;
+    
+    public Blueprint addBlueprintWithFiltreR(Blueprint bp) {
+    	return fil.filterBlueprint(bp);
+    }
     
     public void addNewBlueprint(Blueprint bp) throws BlueprintPersistenceException{
         bpp.saveBlueprint(bp);

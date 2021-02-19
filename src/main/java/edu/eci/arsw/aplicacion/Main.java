@@ -17,9 +17,11 @@ public class Main {
 		BlueprintsServices serv = ac.getBean(BlueprintsServices.class);
 		//ejemplo1
 		//- Agregar
-		Point[] pts0 = new Point[] { new Point(400, 400), new Point(15, 15) };
+		Point[] pts0 = new Point[] { new Point(400, 400), new Point(15, 15) , new Point(15, 15) , new Point(15, 15) };
 		Blueprint bp0 = new Blueprint("mack", "mypaint", pts0);
 		serv.addNewBlueprint(bp0);
+		System.out.println(serv.addBlueprintWithFiltreR(bp0).getPoints());
+		
 		//- Traer Plano
 		System.out.println(serv.getBlueprint("mack", "mypaint"));
 		//Traer Plano por Autor
