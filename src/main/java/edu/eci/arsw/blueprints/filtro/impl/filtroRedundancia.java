@@ -28,24 +28,28 @@ public class filtroRedundancia implements filtro {
 		for(int i=0;i<list.size()-1;i++) {
 			
 			Point p1 = list.get(i);
-			
+			int cont=0;
 			for(int j=i+1;j<list.size();j++) {
-				int cont=0;
-				Point p2 = list.get(j);
 				
+				Point p2 = list.get(j);
+				System.out.println(i+"--"+j);
 				boolean  cond1= p1.getX()==p2.getX();
 				boolean  cond2= p1.getY()==p2.getY();
 				if(!(cond1 && cond2)) {
-					System.out.println(i+"--"+j);
+					System.out.println(cont);
 					if(cont==0) {
-						
 						newList.add(p1);
+						
+					}else {
+						i=j-1;
+						System.out.println(i+"..");
 					}
-					
 					if(j==list.size()-1) {
 						
 						newList.add(p2);
 					}
+					
+					
 					j=list.size();
 				}else {
 					cont+=1;

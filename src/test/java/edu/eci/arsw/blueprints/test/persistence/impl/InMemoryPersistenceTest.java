@@ -114,6 +114,17 @@ public class InMemoryPersistenceTest {
         Blueprint prueba = ibpp.filterBlueprint(bp0);
        
         assertEquals(prueba.getPoints().size(),1);
+        Point[] pts1=new Point[]{new Point(40, 40),new Point(15, 15),new Point(15, 15),new Point(40, 40)};
+        Blueprint bp1=new Blueprint("mack", "mypaint",pts1);
+        Blueprint prueba1 = ibpp.filterBlueprint(bp1);
+        assertEquals(prueba1.getPoints().size(),2);
+        
+        assertEquals(prueba.getPoints().size(),1);
+        Point[] pts2=new Point[]{new Point(40, 40),new Point(15, 15),new Point(15, 15),new Point(40, 40),new Point(60, 40),
+        		new Point(40, 40), new Point(40, 40), new Point(40, 40), new Point(30, 40)};
+        Blueprint bp2=new Blueprint("mack", "mypaint",pts2);
+        Blueprint prueba2 = ibpp.filterBlueprint(bp2);
+        assertEquals(prueba2.getPoints().size(),4);
         
        
         
